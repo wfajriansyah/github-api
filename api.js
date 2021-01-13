@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 
 class Restfull {
     constructor() {
@@ -9,7 +9,7 @@ class Restfull {
         }
     }
     async getRepository(username) {
-        try {
+        try {                
         } catch(err) {
 
         }
