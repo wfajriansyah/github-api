@@ -1,0 +1,28 @@
+{
+  "name": "github-api",
+  "version": "1.0.0",
+  "description": "Github Restfull API for getting repository from user.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wfajriansyah/github-api.git"
+  },
+  "keywords": [
+    "github",
+    "api",
+    "restfull",
+    "nodejs"
+  ],
+  "author": "Wildan Fajriansyah <me@wfajriansyahh.id>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wfajriansyah/github-api/issues"
+  },
+  "homepage": "https://github.com/wfajriansyah/github-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
