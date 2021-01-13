@@ -15,6 +15,7 @@ class Restfull {
             }
         }
     }
+
     getListRepo(username) {
         this.options.path = "/users/" + username + "/repos";
         return new Promise((resolve, reject) => {
@@ -58,6 +59,28 @@ class Restfull {
                 message : "NO_REPOSITORY"
             };
         }
+    }
+
+    getRepo(path) {
+        this.options.path = "/repos/" + path;
+        return new Promise((resolve, reject) => {
+            https.get(this.options, (res) => {
+                let data = '';
+                res.setEncoding('utf8');
+                res.on('data', (resp) => {
+                    data += resp.toString();
+                });
+                res.on('end', () => {
+                    resolve(data);
+                });
+            }).on('error', (err) => {
+                reject(err);
+            });
+        });
+    }
+
+    async getRepository(path) {
+        
     }
 }
 

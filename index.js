@@ -19,6 +19,16 @@ app.get('/:username', async (req, res) => {
     }
 })
 
+app.get('/:path', async (req, res) => {
+    // Getting information repository of :path
+    const path = req.params.path;
+
+    if(path) {
+        const doInfo = await api.getRepository(path);
+        res.send(doInfo);
+    }
+});
+
 app.listen(port, () => {
   console.log(`Server listening in ${port}`)
 })
