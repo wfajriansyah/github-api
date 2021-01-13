@@ -15,7 +15,7 @@ class Restfull {
             }
         }
     }
-    getRepository(username) {
+    getListRepo(username) {
         this.options.path = "/users/" + username + "/repos";
         return new Promise((resolve, reject) => {
             https.get(this.options, (res) => {
@@ -34,7 +34,7 @@ class Restfull {
     }
 
     async getListRepository(username) {
-        const lists = await this.getRepository(username);
+        const lists = await this.getListRepo(username);
         
         const response = JSON.parse(lists);
         if(response.length > 0) {
