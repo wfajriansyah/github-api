@@ -2,7 +2,7 @@
 Repositori ini adalah restfull api yang mengakses github api, sehingga kita bisa memakai fitur github api disini.
 
 # Requirements
-- Node > 12+
+- Node > v8+
 
 # How it works?
 - git clone this repo
