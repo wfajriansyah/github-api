@@ -9,11 +9,12 @@ app.get('/', (req, res) => {
   res.send('Selamat datang di RESTFULL API')
 })
 
-app.get('/:username', (req, res) => {
+app.get('/:username', async (req, res) => {
     // Getting repository of :username
     const username = req.params.username;
 
-    
+    await api.getListRepository(username);
+    // console.log(doRepository);
 })
 
 app.listen(port, () => {
