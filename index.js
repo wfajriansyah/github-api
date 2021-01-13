@@ -13,8 +13,10 @@ app.get('/:username', async (req, res) => {
     // Getting repository of :username
     const username = req.params.username;
 
-    const doRepository = await api.getListRepository(username);
-    res.send(doRepository);
+    if(username) {
+        const doRepository = await api.getListRepository(username);
+        res.send(doRepository);
+    }
 })
 
 app.listen(port, () => {
