@@ -80,7 +80,21 @@ class Restfull {
     }
 
     async getRepository(path) {
+        const lists = await this.getRepo(path);
         
+        const response = JSON.parse(lists);
+        
+        const description = response.description;
+        const owner_name = response.owner.login;
+        const forkCount = response.forks;
+        const starsCount = response.stargazers_count;
+
+        return {
+            status : true,
+            message : {
+                description, owner_name, forkCount, starsCount
+            }
+        };
     }
 }
 
