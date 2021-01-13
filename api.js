@@ -1,3 +1,4 @@
+const { json } = require('express');
 const https = require('https');
 const { resolve } = require('path');
 
@@ -19,8 +20,9 @@ class Restfull {
         return new Promise((resolve, reject) => {
             https.get(this.options, (res) => {
                 let data = '';
+                res.setEncoding('utf8');
                 res.on('data', (resp) => {
-                    data += resp;
+                    data += resp.toString();
                 });
                 res.on('end', () => {
                     resolve(data);
@@ -34,19 +36,28 @@ class Restfull {
     async getListRepository(username) {
         const lists = await this.getRepository(username);
         
-        console.log(lists)
-        // if(lists.length > 0) {
-            
-        //     // return {
-        //     //     status : true,
-        //     //     message : lists
-        //     // };
-        // } else {
-        //     return {
-        //         status : false,
-        //         message : "NO_REPOSITORY"
-        //     };
-        // }
+        const response = JSON.parse(lists);
+        if(response.length > 0) {
+            let list = [];
+            await Promise.all(response.map(async(items) => {
+                const name = items.name;
+                const url = items.html_url;
+                const createdAt = items.created_at;
+                const updatedAt = items.updated_at;
+                list.push({
+                    name, url, createdAt, updatedAt
+                });
+            }));
+            return {
+                status : true,
+                message : list
+            };
+        } else {
+            return {
+                status : false,
+                message : "NO_REPOSITORY"
+            };
+        }
     }
 }
 
